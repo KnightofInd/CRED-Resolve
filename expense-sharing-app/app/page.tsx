@@ -4,94 +4,121 @@ export default function Home() {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
         minHeight: '100vh',
-        padding: '20px',
-        textAlign: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        position: 'relative',
       }}
     >
-      <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>
-        Expense Sharing App
-      </h1>
-      <p
+      <div
         style={{
-          fontSize: '20px',
-          color: '#666',
-          marginBottom: '40px',
-          maxWidth: '600px',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 50%)',
+        }}
+      />
+      
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          padding: '40px 20px',
+          textAlign: 'center',
         }}
       >
-        Split expenses with friends, roommates, and groups. Track who owes what
-        and settle up easily.
-      </p>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Link
-          href="/auth/login"
+        <div style={{ marginBottom: '20px', fontSize: '64px' }}>💰</div>
+        <h1 style={{ fontSize: '56px', marginBottom: '20px', color: 'white', fontWeight: '800', letterSpacing: '-1px' }}>
+          SplitWise Pro
+        </h1>
+        <p
           style={{
-            padding: '12px 32px',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: 'white',
-            backgroundColor: '#0070f3',
-            textDecoration: 'none',
-            borderRadius: '8px',
+            fontSize: '22px',
+            color: 'rgba(255, 255, 255, 0.95)',
+            marginBottom: '50px',
+            maxWidth: '600px',
+            lineHeight: '1.7',
           }}
         >
-          Sign In
-        </Link>
-        <Link
-          href="/auth/register"
-          style={{
-            padding: '12px 32px',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#0070f3',
-            backgroundColor: 'white',
-            textDecoration: 'none',
-            borderRadius: '8px',
-            border: '2px solid #0070f3',
-          }}
-        >
-          Register
-        </Link>
-      </div>
+          Smart expense sharing with intelligent debt simplification.
+          Track balances and settle up effortlessly.
+        </p>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link
+            href="/auth/login"
+            style={{
+              padding: '16px 40px',
+              fontSize: '18px',
+              fontWeight: '600',
+              color: '#1a1f36',
+              backgroundColor: 'white',
+              textDecoration: 'none',
+              borderRadius: '12px',
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s',
+            }}
+          >
+            Sign In
+          </Link>
+          <Link
+            href="/auth/register"
+            style={{
+              padding: '16px 40px',
+              fontSize: '18px',
+              fontWeight: '600',
+              color: 'white',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              textDecoration: 'none',
+              borderRadius: '12px',
+              border: '2px solid white',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            Get Started
+          </Link>
+        </div>
 
-      <div style={{ marginTop: '60px', maxWidth: '800px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '20px' }}>Features</h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '20px',
-            textAlign: 'left',
-          }}
-        >
-          <div>
-            <h3 style={{ marginBottom: '10px' }}>📊 Split Expenses</h3>
-            <p style={{ color: '#666', fontSize: '14px' }}>
-              Equal, exact, or percentage splits
-            </p>
-          </div>
-          <div>
-            <h3 style={{ marginBottom: '10px' }}>👥 Group Management</h3>
-            <p style={{ color: '#666', fontSize: '14px' }}>
-              Create groups for different occasions
-            </p>
-          </div>
-          <div>
-            <h3 style={{ marginBottom: '10px' }}>💰 Balance Tracking</h3>
-            <p style={{ color: '#666', fontSize: '14px' }}>
-              See who owes what at a glance
-            </p>
-          </div>
-          <div>
-            <h3 style={{ marginBottom: '10px' }}>✅ Settle Up</h3>
-            <p style={{ color: '#666', fontSize: '14px' }}>
-              Record payments and simplify debts
-            </p>
+        <div style={{ marginTop: '80px', maxWidth: '1000px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            <div style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+              <div style={{ fontSize: '40px', marginBottom: '15px' }}>📊</div>
+              <h3 style={{ marginBottom: '10px', color: 'white', fontWeight: '600', fontSize: '20px' }}>Smart Splits</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '15px', lineHeight: '1.6' }}>
+                Equal, exact, or percentage-based expense splitting
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+              <div style={{ fontSize: '40px', marginBottom: '15px' }}>💳</div>
+              <h3 style={{ marginBottom: '10px', color: 'white', fontWeight: '600', fontSize: '20px' }}>Live Balances</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '15px', lineHeight: '1.6' }}>
+                Real-time balance tracking with visual indicators
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+              <div style={{ fontSize: '40px', marginBottom: '15px' }}>🔄</div>
+              <h3 style={{ marginBottom: '10px', color: 'white', fontWeight: '600', fontSize: '20px' }}>Debt Simplification</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '15px', lineHeight: '1.6' }}>
+                Minimize transactions with intelligent algorithms
+              </p>
+            </div>
+            <div style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+              <div style={{ fontSize: '40px', marginBottom: '15px' }}>🔒</div>
+              <h3 style={{ marginBottom: '10px', color: 'white', fontWeight: '600', fontSize: '20px' }}>Secure & Private</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '15px', lineHeight: '1.6' }}>
+                Bank-grade security with row-level data protection
+              </p>
+            </div>
           </div>
         </div>
       </div>
