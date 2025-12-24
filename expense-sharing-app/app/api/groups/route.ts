@@ -120,19 +120,29 @@ export async function POST(request: NextRequest) {
       return errorResponse(groupError.message);
     }
 
-    // Add creator as admin member
-    const { error: memberError } = await supabase
+    // Check if member already exists (in case of duplicate request or trigger)
+    const { data: existingMember } = await supabase
       .from('group_members')
-      .insert({
-        group_id: group.id,
-        user_id: user.id,
-        role: 'admin',
-      });
+      .select('id')
+      .eq('group_id', group.id)
+      .eq('user_id', user.id)
+      .single();
 
-    if (memberError) {
-      // Clean up: delete the group if member creation fails
-      await supabase.from('groups').delete().eq('id', group.id);
-      return errorResponse(memberError.message);
+    // Add creator as admin member only if not already added
+    if (!existingMember) {
+      const { error: memberError } = await supabase
+        .from('group_members')
+        .insert({
+          group_id: group.id,
+          user_id: user.id,
+          role: 'admin',
+        });
+
+      if (memberError) {
+        // Clean up: delete the group if member creation fails
+        await supabase.from('groups').delete().eq('id', group.id);
+        return errorResponse(memberError.message);
+      }
     }
 
     return successResponse(group, 'Group created successfully');
