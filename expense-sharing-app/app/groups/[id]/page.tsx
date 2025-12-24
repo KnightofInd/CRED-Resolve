@@ -52,24 +52,44 @@ export default async function GroupDetailPage({ params }: PageProps) {
                 <p style={{ color: '#6b7280', fontSize: '16px' }}>{group.description}</p>
               )}
             </div>
-            <Link
-              href={`/groups/${id}/expenses/create`}
-              style={{
-                padding: '12px 24px',
-                background: '#10b981',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '10px',
-                fontSize: '15px',
-                fontWeight: '600',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
-              }}
-            >
-              + Add Expense
-            </Link>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <Link
+                href={`/groups/${id}/members/add`}
+                style={{
+                  padding: '12px 24px',
+                  background: 'white',
+                  color: '#10b981',
+                  textDecoration: 'none',
+                  borderRadius: '10px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  border: '2px solid #10b981',
+                }}
+              >
+                + Add Member
+              </Link>
+              <Link
+                href={`/groups/${id}/expenses/create`}
+                style={{
+                  padding: '12px 24px',
+                  background: '#10b981',
+                  color: 'white',
+                  textDecoration: 'none',
+                  borderRadius: '10px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
+                }}
+              >
+                + Add Expense
+              </Link>
+            </div>
           </div>
 
           <GroupHeader group={group} members={members || []} currentUserId={user.id} groupId={id} />

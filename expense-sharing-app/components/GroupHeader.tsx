@@ -14,6 +14,8 @@ interface Member {
   user_id: string;
   role: string;
   joined_at: string;
+  email?: string;
+  full_name?: string;
 }
 
 interface GroupHeaderProps {
@@ -33,10 +35,41 @@ export default function GroupHeader({ group, members, currentUserId, groupId }: 
   const [youOwe, setYouOwe] = useState(0);
   const [youAreOwed, setYouAreOwed] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [memberProfiles, setMemberProfiles] = useState<Record<string, { name: string; email: string }>>({});
 
   useEffect(() => {
     fetchStats();
+    fetchMemberProfiles();
   }, [groupId]);
+
+  const fetchMemberProfiles = async () => {
+    try {
+      const profilesMap: Record<string, { name: string; email: string }> = {};
+      
+      for (const member of members) {
+        try {
+          const res = await fetch(`/api/users/profile?user_id=${member.user_id}`);
+          const data = await res.json();
+          if (data.success) {
+            profilesMap[member.user_id] = {
+              name: data.data.full_name || data.data.email.split('@')[0],
+              email: data.data.email,
+            };
+          }
+        } catch (err) {
+          // If fetch fails, use fallback
+          profilesMap[member.user_id] = {
+            name: 'User',
+            email: '',
+          };
+        }
+      }
+      
+      setMemberProfiles(profilesMap);
+    } catch (err) {
+      console.error('Failed to fetch member profiles', err);
+    }
+  };
 
   const fetchStats = async () => {
     try {
@@ -72,7 +105,23 @@ export default function GroupHeader({ group, members, currentUserId, groupId }: 
   };
 
   const getInitials = (userId: string) => {
-    return 'U' + userId.substring(0, 2).toUpperCase();
+    const profile = memberProfiles[userId];
+    if (profile && profile.name) {
+      const names = profile.name.split(' ');
+      if (names.length >= 2) {
+        return names[0][0] + names[1][0];
+      }
+      return profile.name.substring(0, 2);
+    }
+    return 'U' + userId.substring(0, 1);
+  };
+
+  const getMemberName = (userId: string) => {
+    const profile = memberProfiles[userId];
+    if (profile && profile.name) {
+      return profile.name;
+    }
+    return userId.substring(0, 8);
   };
 
   const getColorForUser = (index: number) => {
@@ -145,7 +194,7 @@ export default function GroupHeader({ group, members, currentUserId, groupId }: 
                 {getInitials(member.user_id)}
               </div>
               <div style={{ fontSize: '14px', color: '#065f46' }}>
-                User {member.user_id.substring(0, 8)}
+                {getMemberName(member.user_id)}
                 {member.user_id === currentUserId && ' (you)'}
               </div>
             </div>

@@ -29,10 +29,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-      <div style={{ maxWidth: '440px', width: '100%', background: 'white', borderRadius: '20px', padding: '48px 40px', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)' }}>
+    <div style={{ minHeight: '100vh', background: '#f8fafb', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+      <div style={{ maxWidth: '440px', width: '100%', background: 'white', borderRadius: '16px', padding: '48px 40px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)', border: '1px solid #e5e7eb' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '16px' }}>💰</div>
+          <div style={{ width: '56px', height: '56px', background: '#10b981', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', margin: '0 auto 16px' }}>💰</div>
           <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1f36', marginBottom: '8px' }}>Welcome Back</h1>
           <p style={{ color: '#6b7280', fontSize: '15px' }}>Sign in to manage your expenses</p>
         </div>
@@ -120,11 +120,11 @@ export default function LoginPage() {
               fontSize: '16px',
               fontWeight: '600',
               color: 'white',
-              background: loading ? '#9ca3af' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: loading ? '#9ca3af' : '#10b981',
               border: 'none',
               borderRadius: '10px',
               cursor: loading ? 'not-allowed' : 'pointer',
-              boxShadow: loading ? 'none' : '0 4px 12px rgba(102, 126, 234, 0.4)',
+              boxShadow: loading ? 'none' : '0 4px 12px rgba(16, 185, 129, 0.3)',
               transition: 'all 0.2s',
             }}
           >
@@ -135,7 +135,7 @@ export default function LoginPage() {
         <div style={{ marginTop: '32px', textAlign: 'center', padding: '20px 0', borderTop: '1px solid #e5e7eb' }}>
           <p style={{ color: '#6b7280', fontSize: '14px' }}>
             Don't have an account?{' '}
-            <Link href="/auth/register" style={{ color: '#667eea', fontWeight: '600' }}>
+            <Link href="/auth/register" style={{ color: '#10b981', fontWeight: '600' }}>
               Create account
             </Link>
           </p>

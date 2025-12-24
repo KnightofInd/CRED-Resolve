@@ -55,15 +55,24 @@ export async function POST(
         return validationErrorResponse('Invalid email address');
       }
 
-      // Note: In production, you'd need to query auth.users
-      // For now, we'll require user_id
-      return validationErrorResponse(
-        'User lookup by email not implemented. Please provide user_id'
-      );
+      // Look up user by email in profiles table
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('email', email.toLowerCase())
+        .single();
+
+      if (profileError || !profile) {
+        return validationErrorResponse(
+          'No user found with that email address. The user must have an account first.'
+        );
+      }
+
+      targetUserId = profile.id;
     }
 
     if (!targetUserId) {
-      return validationErrorResponse('user_id is required');
+      return validationErrorResponse('Either user_id or email is required');
     }
 
     // Validate role
