@@ -68,7 +68,5 @@ export const config = {
   matcher: [
     '/dashboard/:path*',
     '/groups/:path*',
-    '/auth/login',
-    '/auth/register',
   ],
 };
